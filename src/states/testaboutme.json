@@ -1,0 +1,84 @@
+{
+  "experties": [
+    {
+      "id": "1fasd",
+      "institution": "experties",
+      "degree": "dsfk;l",
+      "startDate": "232847015",
+      "endDate": "1324",
+      "percentageObtained": "2314",
+      "subjectStudied": [
+        "mat2134hs",
+        "234sadf",
+        "2134sdfas",
+        "englieewfesh",
+        "sansadfskrit"
+      ],
+      "boardOfEducation": "CBsdfasdSE",
+      "timeStamp": "2023-sdfas09-08T14:30:00Z"
+    },
+    {
+      "id": "12fasd",
+      "institution": "experties",
+      "degree": "dsfk;l",
+      "startDate": "232847015",
+      "endDate": "1324",
+      "percentageObtained": "2314",
+      "subjectStudied": [
+        "mat2134hs",
+        "234sadf",
+        "2134sdfas",
+        "englieewfesh",
+        "sansadfskrit"
+      ],
+      "boardOfEducation": "CBsdfasdSE",
+      "timeStamp": "2023-sdfas09-08T14:30:00Z"
+    }
+  ],
+  "aboutMe": [
+    {
+      "id": "1",
+      "institution": "Kendriya Vidayalaya Janak Puri",
+      "degree": "Secondary",
+      "startDate": "2015",
+      "endDate": "2016",
+      "percentageObtained": "94",
+      "subjectStudied": ["maths", "science", "hindi", "english", "sanskrit"],
+      "boardOfEducation": "CBSE",
+      "timeStamp": "2023-09-08T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "institution": "Kendriya Vidayalaya Janak Puri",
+      "degree": "Higher Secondary",
+      "startDate": "2016",
+      "endDate": "2018",
+      "percentageObtained": "94",
+      "subjectStudied": ["maths", "science", "hindi", "english", "sanskrit"],
+      "boardOfEducation": "CBSE",
+      "timeStamp": "2023-09-08T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "institution": "Integrated Institute Of Technology Dwaraka Sec-9",
+      "degree": "Graduation",
+      "startDate": "2019",
+      "endDate": "2022",
+      "percentageObtained": "94",
+      "subjectStudied": ["maths", "science", "hindi", "english", "sanskrit"],
+      "boardOfEducation": "CBSE",
+      "timeStamp": "2023-09-08T14:30:00Z"
+    },
+    {
+      "id": "4",
+      "institution": "Integrated Institute Of Technology Dwaraka Sec-9 --- :)",
+      "degree": "Graduation 2",
+      "startDate": "2022",
+      "endDate": "2024",
+      "percentageObtained": "94",
+      "subjectStudied": ["maths", "science", "hindi", "english", "sanskrit"],
+      "boardOfEducation": "CBSE",
+      "timeStamp": "2023-09-08T14:30:00Z"
+    }
+  ]
+}

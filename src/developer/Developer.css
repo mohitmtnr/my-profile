@@ -1,0 +1,40 @@
+#left-side-menu .left-side-menu-toggle-button {
+  background-color: transparent;
+  display: block;
+  border: transparent;
+  position: fixed;
+  bottom: 50%;
+  transition: all linear 400ms;
+}
+
+#left-side-menu .left-side-menu-toggle-button:hover {
+  transform: translateX(5px);
+}
+
+#offcanvas-close-button i {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+#offcanvas-close-button {
+  outline: transparent;
+  border: transparent;
+  width: fit-content;
+  transition: all linear 400ms;
+}
+
+#left-side-menu-offcanvas-body .nav .nav-item .nav-link.active-link {
+  color: #fff !important;
+  background-color: #6f2bf4 !important;
+  transition: all linear 400ms;
+}
+
+#left-side-menu-offcanvas-body .nav .nav-item .nav-link {
+  font-size: 16px;
+  transition: all linear 400ms;
+}
+#left-side-menu-offcanvas-body .nav .nav-item:hover .nav-link {
+  color: #fff !important;
+  transform: translateX(5px);
+  background-color: #6f2bf4 !important;
+}

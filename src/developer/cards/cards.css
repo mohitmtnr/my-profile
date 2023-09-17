@@ -1,0 +1,61 @@
+#my-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20%;
+}
+
+.card-control .fa-solid {
+  cursor: pointer;
+}
+
+.card-control .fa-solid:hover {
+  color: #969696;
+}
+
+.card-header {
+  border: none !important;
+}
+.my-image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.card-text {
+  flex: 1;
+  margin-top: 1em;
+}
+
+#add-secondary-cards i {
+  width: 5em;
+  transition: all linear 400ms;
+}
+
+#add-secondary-cards:hover i {
+  opacity: 0.8;
+}
+
+#add-secondary-cards:active i {
+  transform: scale(0.9);
+}
+
+/* #cards-container .secondary-card {
+  cursor: pointer;
+} */
+
+.card-control {
+  display: none;
+  transition: all linear 400ms;
+}
+
+#cards-container .secondary-card:hover .card-control {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .primary-card {
+    align-items: center;
+    flex-direction: column;
+  }
+}
