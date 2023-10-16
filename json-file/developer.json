@@ -1,0 +1,33 @@
+{
+  "aboutme": [
+    {
+      "id": "1",
+      "description": "Mohit",
+      "onlineProfileLinks": [
+        "mohit"
+      ],
+      "heighestQualification": "",
+      "dob": "",
+      "stateBelongTo": "Uttrakhand",
+      "currentCity": "New Delhi",
+      "hobbies": "Updated mmohit"
+    }
+  ],
+  "experties": [
+    {
+      "id": "1",
+      "description": "xyz",
+      "programmingLanguagesKnown": [
+        "mohit"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "description": "xyz",
+      "rojectsDelivered": 2,
+      "maxMinTimeTaken": "2-5 months"
+    }
+  ]
+}
