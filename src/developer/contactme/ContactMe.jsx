@@ -3,6 +3,8 @@ import lightDarkModeContext from "../../context/LightDarkModeContext";
 
 const ContactMe = () => {
   const mode = useContext(lightDarkModeContext);
+  document.title = "Contact me";
+
   return (
     <>
       <div className="container">

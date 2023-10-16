@@ -1,6 +1,4 @@
 #my-img {
-  width: 200px;
-  height: 200px;
   border-radius: 20%;
 }
 
@@ -29,14 +27,15 @@
 
 #add-secondary-cards i {
   width: 5em;
+  cursor: pointer;
   transition: all linear 400ms;
 }
 
-#add-secondary-cards:hover i {
+#add-secondary-cards i:hover {
   opacity: 0.8;
 }
 
-#add-secondary-cards:active i {
+#add-secondary-cards i:active {
   transform: scale(0.9);
 }
 

@@ -14,8 +14,6 @@ export default function Developer(props) {
   //use of location from react router to change the active class as per url path
   const currentLocation = useLocation();
   const [activePath, setActivePath] = useState("");
-
-  console.log("renders");
   //use effect
   useEffect(() => {
     setProgress(40);
@@ -75,11 +73,11 @@ export default function Developer(props) {
             >
               <img
                 src={profileImage}
+                height="64"
+                width="64"
                 alt="Profile"
                 loading="lazy"
                 style={{
-                  width: "4em",
-                  height: "4em",
                   borderRadius: "50%",
                   overflow: "hidden",
                 }}
@@ -107,103 +105,64 @@ export default function Developer(props) {
             id="left-side-menu-offcanvas-body"
             className="offcanvas-body d-flex justify-content-start p-0"
           >
-            <ul className="nav flex-column text-start w-100">
-              <h6 className="text-secondary mb-4 mx-2">Navigation</h6>
-              <li
-                className="nav-item w-75 my-1"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              >
-                <Link
-                  to="/developer/aboutme"
-                  className={`nav-link text-${mode.text} ${
-                    activePath === "/developer/aboutme" ? "active-link" : ""
-                  } rounded-end`}
-                  aria-current="page"
+            <ul className="my-side-nav p-0 w-100">
+              <h6 className="text-secondary  mx-2">Navigation</h6>
+              <div className="my-4">
+                <li
+                  className="nav-item w-75 my-1"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
                 >
-                  <i
-                    className="fa-regular fa-address-card"
-                    style={{ width: "20px" }}
-                  />
-                  <span className="mx-2">About Me</span>
-                </Link>
-              </li>
-              <li
-                className="nav-item w-75 my-1"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              >
-                <Link
-                  to="/developer/experties"
-                  className={`nav-link text-${mode.text}  ${
-                    activePath === "/developer/experties" ? "active-link" : ""
-                  } rounded-end`}
-                  aria-current="page"
+                  <Link
+                    to="/developer/aboutme"
+                    className={`nav-link text-${mode.text} ${
+                      activePath === "/developer/aboutme" ? "active-link" : ""
+                    } rounded-end`}
+                    aria-current="page"
+                  >
+                    <i
+                      className="fa-regular fa-address-card"
+                      style={{ width: "20px" }}
+                    />
+                    <span className="mx-2">About Me</span>
+                  </Link>
+                </li>
+                <li
+                  className="nav-item w-75 my-1"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
                 >
-                  <i className="fa-solid fa-lock" style={{ width: "20px" }} />
-                  <span className="mx-2">Experties</span>
-                </Link>
-              </li>
-              <li
-                className="nav-item w-75 my-1"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              >
-                <Link
-                  to="/developer/projects"
-                  className={`nav-link text-${mode.text}  ${
-                    activePath === "/developer/projects" ? "active-link" : ""
-                  } rounded-end`}
-                  aria-current="page"
+                  <Link
+                    to="/developer/experties"
+                    className={`nav-link text-${mode.text}  ${
+                      activePath === "/developer/experties" ? "active-link" : ""
+                    } rounded-end`}
+                    aria-current="page"
+                  >
+                    <i className="fa-solid fa-lock" style={{ width: "20px" }} />
+                    <span className="mx-2">Experties</span>
+                  </Link>
+                </li>
+                <li
+                  className="nav-item w-75 my-1"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
                 >
-                  <i
-                    className="fa-solid fa-user-shield"
-                    style={{ width: "20px" }}
-                  />
-                  <span className="mx-2">Projects</span>
-                </Link>
-              </li>
-              <li
-                className="nav-item w-75 my-1"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              >
-                <Link
-                  to="/developer/contactme"
-                  className={`nav-link text-${mode.text}  ${
-                    activePath === "/developer/contactme" ? "active-link" : ""
-                  } rounded-end`}
-                  aria-current="page"
-                >
-                  <i
-                    className="fa-solid fa-square-phone"
-                    style={{ width: "20px" }}
-                  />
-                  <span className="mx-2">Contact me</span>
-                </Link>
-              </li>
-
-              <li
-                className="nav-item w-75 my-1"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              >
-                <Link
-                  to="/developer/currentstatus"
-                  className={`nav-link text-${mode.text}  ${
-                    activePath === "/developer/currentstatus"
-                      ? "active-link"
-                      : ""
-                  } rounded-end`}
-                  aria-current="page"
-                >
-                  <i
-                    className="fa-solid fa-briefcase"
-                    style={{ width: "20px" }}
-                  />
-                  <span className="mx-2">Status</span>
-                </Link>
-              </li>
+                  <Link
+                    to="/developer/projects"
+                    className={`nav-link text-${mode.text}  ${
+                      activePath === "/developer/projects" ? "active-link" : ""
+                    } rounded-end`}
+                    aria-current="page"
+                  >
+                    <i
+                      className="fa-solid fa-user-shield"
+                      style={{ width: "20px" }}
+                    />
+                    <span className="mx-2">Projects</span>
+                  </Link>
+                </li>
+              </div>
             </ul>
           </div>
         </div>

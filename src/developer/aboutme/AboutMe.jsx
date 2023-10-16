@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import lightDarkModeContext from "../../context/LightDarkModeContext";
 import myImage from "./my-image.jpeg";
 import "../cards/cards.css";
@@ -8,15 +8,22 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { GetItems } from "../../redux/action-creator/AboutMeActions";
 import ContentLoading from "../../loaders/other-loaders/ContentLoading";
+import { fetchAsyncData } from "../../redux/async-fetch/fetchDataForAll";
 
 export default function AboutMe() {
   const mode = useContext(lightDarkModeContext);
   const cards = useSelector((state) => state.aboutMe.data);
-  const data = useSelector((state) => state.aboutMe.data);
-
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
+  async function fetchData() {
+    const response = await fetchAsyncData("developer/getdeveloper");
+    response && setData(response.aboutme);
+  }
+
   useEffect(() => {
+    document.title = "About me";
     dispatch(GetItems("aboutme/getaboutme"));
+    fetchData();
   }, []);
 
   return (
@@ -35,30 +42,34 @@ export default function AboutMe() {
                   <span>&nbsp;About Me</span>
                 </h4>
                 {/* only visible when logged in*/}
-                <div className="card-control d-flex">
-                  <i
-                    className="fa-solid fa-pen-to-square align-self-center fs-4 align-self-center"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    data-bs-whatever="Edit Card"
-                  />
-                </div>
+                {localStorage.getItem("authToken") && (
+                  <div className="card-control d-flex">
+                    <i
+                      className="fa-solid fa-pen-to-square align-self-center fs-4 align-self-center"
+                      data-bs-toggle="modal"
+                      data-bs-target="#AboutMeModal"
+                      data-bs-whatever="edit-card-1"
+                    />
+                  </div>
+                )}
               </div>
               <div className="card-body">
                 <div className="my-image-container">
                   <img
                     id="my-img"
                     loading="lazy"
+                    height="250"
+                    width="250"
                     src={myImage}
                     alt="myImage"
                     className="mx-2"
                   />
                   <div className="primary-card-text">
                     <p className="card-text text-secondary ">
-                      {data ? (
+                      {data.length != 0 ? (
                         data.map((e) => (
-                          <li key={e._id} className="text-light">
-                            {e.degree}
+                          <li key={e.id} className="text-light">
+                            {e.description}
                           </li>
                         ))
                       ) : (
@@ -89,12 +100,16 @@ export default function AboutMe() {
         <div id="cards-container" className="row my-0">
           {cards ? (
             cards.map((data) => (
-              <div key={data._id} className="col-md-6  my-1">
+              <div
+                key={data._id}
+                id={data._id}
+                data-name="aboutme"
+                className="element-card col-md-6  my-1"
+              >
                 <Card
                   degree={data.degree}
                   institute={data.institution}
                   duration={data.startDate + "-" + data.endDate}
-                  id={data._id}
                   percentage={data.percentageObtained}
                   boardOfEducation={
                     data.boardOfEducation ? data.boardOfEducation : null
@@ -114,17 +129,23 @@ export default function AboutMe() {
           )}
         </div>
         {/* This  will only be visible if I am login */}
-        <div
-          type="button"
-          id="add-secondary-cards"
-          className="add-cards text-light text-center my-5 fs-2"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          data-bs-whatever="Add Card"
-        >
-          <i className="fa-solid fa-plus m-purple rounded-2 py-1"></i>
-        </div>
-        <AboutMeModal />
+        {localStorage.getItem("authToken") && (
+          <>
+            <div
+              id="add-secondary-cards"
+              className="add-cards text-light text-center my-5 fs-2"
+            >
+              <i
+                type="button"
+                className="fa-solid fa-plus m-purple rounded-2 py-1"
+                data-bs-toggle="modal"
+                data-bs-target="#AboutMeModal"
+                data-bs-whatever="add-card-0"
+              ></i>
+            </div>
+            <AboutMeModal />
+          </>
+        )}
       </div>
     </>
   );

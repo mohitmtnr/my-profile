@@ -1,16 +1,14 @@
-import React from "react";
+import React, { memo } from "react";
 import { useContext } from "react";
 import lightDarkModeContext from "../../context/LightDarkModeContext";
 import { useDispatch } from "react-redux";
-import { DeleteItems } from "../../redux/action-creator/AboutMeActions";
-import alertContext from "../../context/AlertContext";
+import RemoveElements from "./RemoveElements";
 
 const ExpertiesCard = (props) => {
   const mode = useContext(lightDarkModeContext);
   const dispatch = useDispatch();
-  const { showAlert } = useContext(alertContext);
+
   const {
-    id,
     title,
     description,
     WebTechnologyFontAwesomeTag,
@@ -28,6 +26,7 @@ const ExpertiesCard = (props) => {
     (update.getMonth() + 1) +
     "-" +
     update.getFullYear();
+
   return (
     <div
       className={`card secondary-card bg-${mode.background} text-${mode.text} my-3 `}
@@ -38,28 +37,21 @@ const ExpertiesCard = (props) => {
           <span>&nbsp;{title}</span>
         </h5>
         {/* only visible when logged in*/}
-        <div className="card-control justify-content-between ">
-          <i
-            className="fa-solid fa-pen-to-square align-self-center mx-2 fs-6 "
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            data-bs-whatever="Edit Card"
-          />
-          <i
-            className="fa-solid fa-trash-can align-self-center mx-2 fs-6"
-            onClick={() => {
-              const response = window.confirm(
-                "Would you like to delete the card?"
-              );
-              if (response == true) {
-                dispatch(DeleteItems(id));
-                showAlert("success", "One item successfully deleted!");
-              } else {
-                showAlert("danger", "Deletion cancelled Successfully!");
-              }
-            }}
-          />
-        </div>
+        {localStorage.getItem("authToken") && (
+          <div className="card-control justify-content-between ">
+            <i
+              className="fa-solid fa-pen-to-square align-self-center mx-2 fs-6 "
+              data-bs-toggle="modal"
+              data-bs-target="#expertiesModal"
+              data-bs-whatever="edit-card-0"
+            />
+            <i
+              data-role="remove-card"
+              className="fa-solid fa-trash-can align-self-center mx-2 fs-6"
+              onClick={RemoveElements}
+            />
+          </div>
+        )}
       </div>
       <div className="card-body text-secondary">
         <ul>
@@ -80,4 +72,4 @@ const ExpertiesCard = (props) => {
   );
 };
 
-export default ExpertiesCard;
+export default memo(ExpertiesCard);

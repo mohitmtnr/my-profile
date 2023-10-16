@@ -1,12 +1,14 @@
 // import logo from "./logo.svg";
 import React, { useState, lazy, Suspense, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 import AlertState from "./states/AlertState";
 import lightDarkModeContext from "./context/LightDarkModeContext";
 import ToggleFullScreen from "./components/ToggleFullScreen";
 import "./App.css";
 import ContentLoading from "./loaders/other-loaders/ContentLoading";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 // import ReactLoadingSkeleton from "./loaders/other-loaders/ReactLoadingSkeleton";
 // import { SkeletonTheme } from "react-loading-skeleton";
 const Alert = lazy(() => import("./alerts/Alert"));
@@ -26,12 +28,16 @@ const CurrentStatus = lazy(() =>
 function App() {
   // progress bar states
   const [progress, setProgress] = useState(20);
+  const location = useLocation();
+  const isLoginOrSignupPage =
+    location.pathname == "/login" || location.pathname == "/signup";
 
   // toggle mode dark/light
   const [mode, setMode] = useState({
     background: localStorage.getItem("background") || "dark",
     text: localStorage.getItem("text") || "light",
   });
+
   const [fontAwesomeClass, setFontAwesomeClass] = useState(
     localStorage.getItem("fontAwesomeClass") || "moon"
   );
@@ -39,9 +45,11 @@ function App() {
     if (mode.background === "dark") {
       setMode({ background: "light", text: "dark" });
       setFontAwesomeClass("sun");
+      document.body.style.backgroundColor = "#ffffff";
     } else {
       setMode({ background: "dark", text: "light" });
       setFontAwesomeClass("moon");
+      document.body.style.backgroundColor = "#171a1d";
     }
   };
 
@@ -49,6 +57,9 @@ function App() {
     localStorage.setItem("background", mode.background);
     localStorage.setItem("text", mode.text);
     localStorage.setItem("fontAwesomeClass", fontAwesomeClass);
+    //default body background
+    document.body.style.backgroundColor =
+      localStorage.getItem("background") === "dark" ? "#171a1d" : "#ffffff";
   }, [mode, fontAwesomeClass]);
 
   return (
@@ -57,31 +68,29 @@ function App() {
         fallback={
           <div
             className={`bg-${mode.background} d-flex justify-content-center`}
-            style={{ height: "100vh", width: "100vw" }}
+            style={{
+              height: "100vh",
+              width: "100vw",
+            }}
           >
             <ContentLoading count={1} />
           </div>
         }
       >
         <div className={`App ${mode.background} p-0`}>
-          <LoadingBar
-            color="#FF000D"
-            waitingTime="300"
-            progress={progress}
-            // onLoaderFinished={() => setProgress(0)}
-          />
-
-          <NavBar
-            ToggleFullScreen={ToggleFullScreen}
-            name="Developer"
-            title="TeXeDi"
-            dropMenu="Know"
-            handleToggleModeClick={handleToggleModeClick}
-            background={mode.background}
-            text={mode.text}
-            fontAwesomeClass={fontAwesomeClass}
-          />
+          <LoadingBar color="#FF000D" waitingTime="300" progress={progress} />
           <AlertState>
+            <NavBar
+              ToggleFullScreen={ToggleFullScreen}
+              name="Developer"
+              title="TeXeDi"
+              dropMenu="Know"
+              handleToggleModeClick={handleToggleModeClick}
+              background={mode.background}
+              text={mode.text}
+              fontAwesomeClass={fontAwesomeClass}
+            />
+
             <Alert />
             <Routes>
               <Route
@@ -111,16 +120,6 @@ function App() {
                   path="/developer/projects"
                   element={<Projects />}
                 />
-                <Route
-                  exact
-                  path="/developer/contactme"
-                  element={<ContactMe />}
-                />
-                <Route
-                  exact
-                  path="/developer/currentstatus"
-                  element={<CurrentStatus />}
-                />
               </Route>
 
               <Route
@@ -137,9 +136,20 @@ function App() {
                   </>
                 }
               ></Route>
+              <Route
+                exact
+                path="/login"
+                element={<Login setProgress={setProgress} />}
+              ></Route>
+              <Route
+                exact
+                path="/signup"
+                element={<Signup setProgress={setProgress} />}
+              ></Route>
             </Routes>
-
-            <Footer background={mode.background} text={mode.text} />
+            {isLoginOrSignupPage ? null : (
+              <Footer background={mode.background} text={mode.text} />
+            )}
           </AlertState>
         </div>
       </Suspense>

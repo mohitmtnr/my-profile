@@ -1,4 +1,5 @@
-import { fetchAsyncData } from "../async fetch/fetchDataForAll";
+import { fetchAsyncData } from "../async-fetch/fetchDataForAll";
+import RemoveElements from "../../developer/cards/RemoveElements";
 
 export const getItems = "GET_ABOUTME";
 export const putItems = "POST_ABOUTME";
@@ -6,15 +7,9 @@ export const updateItems = "UPDATE_ABOUTME";
 export const deleteItems = "DELETE_ABOUTME";
 
 export const GetItems = (tableName) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     const response = await fetchAsyncData(tableName);
     dispatch({ type: getItems, payload: response });
-  };
-};
-
-export const DeleteItems = (id) => {
-  return (dispatch) => {
-    dispatch({ type: deleteItems, payload: id });
   };
 };
 

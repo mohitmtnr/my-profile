@@ -10,3 +10,82 @@
 .App.dark {
   background-color: #171a1d;
 }
+
+*::selection {
+  background-color: black;
+  color: white;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="date"].input-dark::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+input[type="date"].input-light::-webkit-calendar-picker-indicator {
+  filter: invert(0);
+  cursor: pointer;
+}
+/* customized focus - form-control(bootstrap class) */
+.form-control:focus {
+  box-shadow: 0px 0px 0px 1px #6f2bf4 !important;
+}
+
+/* check css by outline -- no other use*/
+.c {
+  border: 1px solid red;
+}
+
+/* input box color */
+
+.input-light {
+  background-color: #ffffff !important;
+  color: #282c34 !important;
+  border-color: #dfe0e1 !important;
+  caret-color: #79828a;
+}
+.input-dark {
+  background-color: #33393e !important;
+  color: #ffffff !important;
+  border-color: #42454d !important;
+  caret-color: #a2aab1;
+}
+
+/* placeholder for input fields */
+.input-dark::placeholder {
+  color: #a2aab1 !important;
+}
+.input-light::placeholder {
+  color: #79828a !important;
+}
+
+/* placeholder text style */
+input[type="date"].input-dark::-webkit-datetime-edit-text,
+input[type="date"].input-dark::-webkit-datetime-edit-month-field,
+input[type="date"].input-dark::-webkit-datetime-edit-day-field,
+input[type="date"].input-dark::-webkit-datetime-edit-year-field {
+  color: #a2aab1;
+}
+
+/* placeholder text style */
+input[type="date"].input-light::-webkit-datetime-edit-text,
+input[type="date"].input-light::-webkit-datetime-edit-month-field,
+input[type="date"].input-light::-webkit-datetime-edit-day-field,
+input[type="date"].input-light::-webkit-datetime-edit-year-field {
+  color: #79828a;
+}

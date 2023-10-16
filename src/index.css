@@ -59,50 +59,20 @@ code {
 /* cutomized button hover and focus  */
 .btn {
   transition: all linear 400ms;
+  border: none;
 }
 .btn:hover {
   opacity: 0.8;
 }
 
 .btn:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 /* customized box shadow */
 
 .my-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15) !important;
-}
-
-/* customized focus - form-control(bootstrap class) */
-.form-control:focus {
-  box-shadow: 0px 0px 0px 1px #6f2bf4 !important;
-}
-
-/* check css by outline -- no other use*/
-.c {
-  border: 1px solid red;
-}
-
-/* input box color */
-
-.input-light {
-  background-color: #ffffff !important;
-  color: #282c34 !important;
-  border-color: #dfe0e1 !important;
-}
-.input-dark {
-  background-color: #33393e !important;
-  color: #ffffff !important;
-  border-color: #42454d !important;
-}
-
-/* placeholder for input fields */
-.input-dark::placeholder {
-  color: #f8f9fa;
-}
-.input-light::placeholder {
-  color: #282c34;
 }
 
 /* card-control remove and edit active effect */
@@ -112,7 +82,7 @@ code {
 }
 
 .card-control i:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 /* lazy suspend fallback loader */

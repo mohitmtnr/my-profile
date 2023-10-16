@@ -3,6 +3,8 @@ import lightDarkModeContext from "../../context/LightDarkModeContext";
 
 const CurrentStatus = () => {
   const mode = useContext(lightDarkModeContext);
+  document.title = "Status";
+
   return (
     <>
       <div className="container">

@@ -1,11 +1,6 @@
 import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
-import { fetchAsyncData } from "../async fetch/fetchDataForAll";
-import {
-  fetchItems,
-  updateItems,
-  deleteItems,
-  insertItems,
-} from "../action-creator/ExpertiesActions";
+import { fetchAsyncData } from "../async-fetch/fetchDataForAll";
+import { updateItems, insertItems } from "../action-creator/ExpertiesActions";
 
 export const fetchAsyncExperties = createAsyncThunk(
   "fetch/experties",
@@ -23,10 +18,8 @@ const initialState = {
 
 const ExpertiesReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchItems, (state, action) => {})
     .addCase(insertItems, (state, actions) => {})
     .addCase(updateItems, (state, actions) => {})
-    .addCase(deleteItems, (state, actions) => {})
     .addCase(fetchAsyncExperties.fulfilled, (state, actions) => {
       state.loading = false;
       state.error = null;

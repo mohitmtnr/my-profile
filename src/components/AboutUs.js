@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 export default function AboutUs(props) {
   const { setProgress } = props;
   useEffect(() => {
+    document.title = "About us";
+
     setProgress(40);
     setTimeout(() => {
       setProgress(100);

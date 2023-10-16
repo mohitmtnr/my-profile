@@ -1,5 +1,7 @@
 import "./NavBar.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import alertContext from "../context/AlertContext";
 
 // import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
@@ -7,7 +9,9 @@ import { Link, useLocation } from "react-router-dom";
 //top horizontal nav-bar for all pages
 export default function NavBar(props) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState("");
+  const { showAlert } = useContext(alertContext);
 
   //developer active class configuration
   let developerActiveClass =
@@ -19,6 +23,12 @@ export default function NavBar(props) {
       ? "active"
       : "";
 
+  //logout
+  function handleLogoutClick() {
+    localStorage.removeItem("authToken");
+    showAlert("success", "Successfully logged out!");
+    navigate("/login");
+  }
   // Update the active link when the location changes
   useEffect(() => {
     setActiveLink(location.pathname);
@@ -104,11 +114,25 @@ export default function NavBar(props) {
                 </button>
               </li>
             </ul>
-            <div className="text-center">
-              <button className="btn btn-success" type="submit">
-                Login
-              </button>
-            </div>
+            {localStorage.getItem("authToken") ? (
+              <div className="text-center">
+                <button
+                  className="btn btn-danger mx-1"
+                  onClick={handleLogoutClick}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="text-center">
+                <Link className="btn btn-success mx-2" to="login">
+                  Login
+                </Link>
+                <Link className="btn d-purple" to="signup">
+                  Signup
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>

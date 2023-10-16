@@ -3,7 +3,6 @@ import lightDarkModeContext from "../context/LightDarkModeContext";
 import AlertContext from "../context/AlertContext";
 import "./Texedi.css";
 import jsPDF from "jspdf";
-import computerImage from "../illustrations/Computer.png";
 export default function Texedi(props) {
   //States
   const [copyStatus, setCopyStatus] = useState("Copy");
@@ -11,20 +10,18 @@ export default function Texedi(props) {
   const [buttonText, updateText] = useState("UPPER CASE");
   const [downloading, setDownloading] = useState("");
   const [text, setText] = useState("");
-
-  //use context
   const mode = useContext(lightDarkModeContext);
   const { showAlert } = useContext(AlertContext);
-  //destructuring the properties
   const { setProgress } = props;
 
   //use effect
   useEffect(() => {
+    document.title = "TeXeDi";
     setProgress(40);
     setTimeout(() => {
       setProgress(100);
     }, 20);
-  }, [setProgress]);
+  }, []);
 
   //word counter variable
   let wordCount = 0;
@@ -332,15 +329,17 @@ export default function Texedi(props) {
         </div>
       </div>
       <div
-        className={`preview container rounded bg-${mode.background} text-${mode.text} my-5 py-5 customize-width`}
+        className={`preview container rounded bg-${mode.background} text-${mode.text} my-5 py-5 customize-width text-center`}
       >
         <h3>Preview</h3>
-        <p
-          className={`rounded ${mode.background} p-3 `}
-          style={{ whiteSpace: "pre-line", width: "96%" }}
-        >
-          {preview}
-        </p>
+        <div className="d-flex justify-content-center">
+          <p
+            className={`rounded ${mode.background} p-3 `}
+            style={{ whiteSpace: "pre-line", width: "96%" }}
+          >
+            {preview}
+          </p>
+        </div>
       </div>
     </>
   );

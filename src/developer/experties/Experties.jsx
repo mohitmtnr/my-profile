@@ -1,23 +1,29 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import lightDarkModeContext from "../../context/LightDarkModeContext";
-import AboutMeModal from "../modals/AboutMeModal";
 import Card from "../cards/ExpertiesCard";
 import "../cards/cards.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import ContentLoading from "../../loaders/other-loaders/ContentLoading";
-import { fetchItems } from "../../redux/action-creator/ExpertiesActions";
 import { fetchAsyncExperties } from "../../redux/reducers/ExpertiesReducer";
+import { fetchAsyncData } from "../../redux/async-fetch/fetchDataForAll";
+import ExpertiesModal from "../modals/ExpertiesModal";
 
 export default function Experties() {
   const mode = useContext(lightDarkModeContext);
   const cards = useSelector((state) => state.experties.data);
-  const data = useSelector((state) => state.experties.data);
-
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
 
+  async function fetchData() {
+    const response = await fetchAsyncData("developer/getdeveloper");
+    response && setData(response.experties);
+  }
+
   useEffect(() => {
+    document.title = "Experties";
     dispatch(fetchAsyncExperties("experties/getexperties"));
+    fetchData();
   }, []);
   return (
     <>
@@ -35,14 +41,16 @@ export default function Experties() {
                   <span>&nbsp;Skills</span>
                 </h4>
                 {/* only visible when logged in*/}
-                <div className="card-control d-flex">
-                  <i
-                    className="fa-solid fa-pen-to-square align-self-center fs-4 align-self-center"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    data-bs-whatever="Edit Card"
-                  />
-                </div>
+                {localStorage.getItem("authToken") && (
+                  <div className="card-control d-flex">
+                    <i
+                      className="fa-solid fa-pen-to-square align-self-center fs-4 align-self-center"
+                      data-bs-toggle="modal"
+                      data-bs-target="#expertiesModal"
+                      data-bs-whatever="edit-card-1"
+                    />
+                  </div>
+                )}
               </div>
               <div className="card-body">
                 <div className="my-image-container">
@@ -55,10 +63,10 @@ export default function Experties() {
                   />
                   <div className="primary-card-text">
                     <p className="card-text text-secondary ">
-                      {data ? (
+                      {data.length !== 0 ? (
                         data.map((e) => (
-                          <li key={e._id} className="text-light">
-                            {e.degree}
+                          <li key={e.id} className="text-light">
+                            {e.description}
                           </li>
                         ))
                       ) : (
@@ -89,9 +97,13 @@ export default function Experties() {
         <div id="cards-container" className="row my-0">
           {cards ? (
             cards.map((data) => (
-              <div key={data._id} className="col-md-6  my-1">
+              <div
+                key={data._id}
+                id={data._id}
+                data-name="experties"
+                className="element-card col-md-6  my-1"
+              >
                 <Card
-                  id={data._id}
                   title={data.title}
                   description={data.description}
                   experience={data.experience}
@@ -113,17 +125,23 @@ export default function Experties() {
           )}
         </div>
         {/* This  will only be visible if I am login */}
-        <div
-          type="button"
-          id="add-secondary-cards"
-          className="add-cards text-light text-center my-5 fs-2"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          data-bs-whatever="Add Card"
-        >
-          <i className="fa-solid fa-plus m-purple rounded-2 py-1"></i>
-        </div>
-        <AboutMeModal />
+        {localStorage.getItem("authToken") && (
+          <>
+            <div
+              id="add-secondary-cards"
+              className="add-cards text-light text-center my-5 fs-2"
+            >
+              <i
+                type="button"
+                className="fa-solid fa-plus m-purple rounded-2 py-1"
+                data-bs-toggle="modal"
+                data-bs-target="#expertiesModal"
+                data-bs-whatever="add-card-0"
+              ></i>
+            </div>
+            <ExpertiesModal />
+          </>
+        )}
       </div>
     </>
   );
