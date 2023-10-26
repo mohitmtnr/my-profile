@@ -13,17 +13,11 @@ import Signup from "./components/Signup";
 // import { SkeletonTheme } from "react-loading-skeleton";
 const Alert = lazy(() => import("./alerts/Alert"));
 const Footer = lazy(() => import("./components/Footer"));
-const Texedi = lazy(() => import("./components/Texedi"));
 const NavBar = lazy(() => import("./components/NavBar"));
 const Developer = lazy(() => import("./developer/Developer"));
-const AboutUs = lazy(() => import("./components/AboutUs"));
 const AboutMe = lazy(() => import("./developer/aboutme/AboutMe"));
 const Experties = lazy(() => import("./developer/experties/Experties"));
 const Projects = lazy(() => import("./developer/projects/Projects"));
-const ContactMe = lazy(() => import("./developer/contactme/ContactMe"));
-const CurrentStatus = lazy(() =>
-  import("./developer/current-status/CurrentStatus")
-);
 
 function App() {
   // progress bar states
@@ -82,8 +76,7 @@ function App() {
           <AlertState>
             <NavBar
               ToggleFullScreen={ToggleFullScreen}
-              name="Developer"
-              title="TeXeDi"
+              name="It's me Mohit"
               dropMenu="Know"
               handleToggleModeClick={handleToggleModeClick}
               background={mode.background}
@@ -96,37 +89,13 @@ function App() {
               <Route
                 exact
                 path="/"
-                element={
-                  <Texedi
-                    setProgress={setProgress}
-                    title="Let's jump into text editor"
-                    button="5"
-                  />
-                }
-              ></Route>
-              <Route
-                exact
-                path="/developer"
                 element={<Developer setProgress={setProgress} />}
               >
-                <Route exact path="/developer/aboutme" element={<AboutMe />} />
-                <Route
-                  exact
-                  path="/developer/experties"
-                  element={<Experties />}
-                />
-                <Route
-                  exact
-                  path="/developer/projects"
-                  element={<Projects />}
-                />
+                <Route exact path="/aboutme" element={<AboutMe />} />
+                <Route exact path="/experties" element={<Experties />} />
+                <Route exact path="/projects" element={<Projects />} />
               </Route>
 
-              <Route
-                exact
-                path="/about"
-                element={<AboutUs setProgress={setProgress} />}
-              ></Route>
               <Route
                 exact
                 path="*"
@@ -158,13 +127,3 @@ function App() {
 }
 
 export default App;
-
-// react loading skeleton
-
-// <SkeletonTheme
-//             baseColor={mode.background === "dark" ? "#33393E" : ""}
-//             highlightColor={mode.background === "dark" ? "#7C848B" : ""}
-//             duration={4}
-//           >
-//             <ReactLoadingSkeleton />
-//           </SkeletonTheme>

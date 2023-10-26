@@ -114,9 +114,9 @@ export default function Developer(props) {
                   aria-label="Close"
                 >
                   <Link
-                    to="/developer/aboutme"
+                    to="/aboutme"
                     className={`nav-link text-${mode.text} ${
-                      activePath === "/developer/aboutme" ? "active-link" : ""
+                      activePath === "/aboutme" ? "active-link" : ""
                     } rounded-end`}
                     aria-current="page"
                   >
@@ -133,9 +133,9 @@ export default function Developer(props) {
                   aria-label="Close"
                 >
                   <Link
-                    to="/developer/experties"
+                    to="/experties"
                     className={`nav-link text-${mode.text}  ${
-                      activePath === "/developer/experties" ? "active-link" : ""
+                      activePath === "/experties" ? "active-link" : ""
                     } rounded-end`}
                     aria-current="page"
                   >
@@ -149,9 +149,9 @@ export default function Developer(props) {
                   aria-label="Close"
                 >
                   <Link
-                    to="/developer/projects"
+                    to="/projects"
                     className={`nav-link text-${mode.text}  ${
-                      activePath === "/developer/projects" ? "active-link" : ""
+                      activePath === "/projects" ? "active-link" : ""
                     } rounded-end`}
                     aria-current="page"
                   >

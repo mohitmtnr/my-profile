@@ -13,16 +13,6 @@ export default function NavBar(props) {
   const [activeLink, setActiveLink] = useState("");
   const { showAlert } = useContext(alertContext);
 
-  //developer active class configuration
-  let developerActiveClass =
-    activeLink === "/developer/aboutme" ||
-    activeLink === "/developer/experties" ||
-    activeLink === "/developer/contactme" ||
-    activeLink === "/developer/projects" ||
-    activeLink === "/developer/currentstatus"
-      ? "active"
-      : "";
-
   //logout
   function handleLogoutClick() {
     localStorage.removeItem("authToken");
@@ -42,14 +32,6 @@ export default function NavBar(props) {
         onDoubleClick={props.ToggleFullScreen}
       >
         <div className="container-fluid">
-          <Link
-            className={`navbar-brand text-${props.text}`}
-            to="/"
-            style={{ fontWeight: "800" }}
-          >
-            {props.title}
-          </Link>
-
           <button
             className="navbar-toggler fs-6 px-3"
             type="button"
@@ -67,30 +49,8 @@ export default function NavBar(props) {
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item text-center">
-                <Link
-                  className={`nav-link ${activeLink === "/" ? "active" : ""}`}
-                  aria-current="page"
-                  to="/"
-                >
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item text-center">
-                <Link
-                  className={`nav-link ${developerActiveClass}`}
-                  to="/developer/aboutme"
-                >
+                <Link className={`nav-link active`} to="/aboutme">
                   {props.name}
-                </Link>
-              </li>
-              <li className="nav-item text-center">
-                <Link
-                  className={`nav-link ${
-                    activeLink === "/about" ? "active" : ""
-                  }`}
-                  to="/about"
-                >
-                  About Us
                 </Link>
               </li>
             </ul>
